@@ -1,0 +1,11 @@
+<h1>All Projects</h1>
+
+<div id = "projects">
+  <% @projects.each do | project | %>
+    <a href = '/projects/<%=project.id%>'><%=project.title%></a>
+
+  <% end %>
+</div>
+<div id = "navigation">
+  <%= link_to "New Project", new_project_path %>
+</div>

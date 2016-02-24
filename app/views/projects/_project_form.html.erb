@@ -1,0 +1,50 @@
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id = "error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :goal %>
+    <%= f.number_field :goal %>
+  </div>
+
+  <div class = "field">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <h2>Rewards</h2>
+
+  <div id="rewards">
+    <%= f.fields_for :rewards do |reward_fields| %>
+      <%= render 'reward_fields', f: reward_fields %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association "Add Reward", f, :rewards %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+
+<% end %>

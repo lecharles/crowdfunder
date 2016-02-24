@@ -1,0 +1,17 @@
+<h1>View Project</h1>
+<div class = "info">
+  <strong>Title:</strong> <%=@project.title%>
+</div>
+<div class = "info">
+  <strong>Description:</strong> <%=@project.description%>
+</div>
+<div class = "info">
+  <strong>Goal:</strong> <%=@project.goal%>
+</div>
+<div class = "info">
+  <strong>End Date:</strong> <%=@project.end_date%>
+</div>
+
+<div id = "navigation">
+  <%= link_to "Back", projects_path %> | <%= link_to "Edit Project", edit_project_path(@project) %>
+</div>
