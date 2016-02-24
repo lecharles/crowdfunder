@@ -21,8 +21,25 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+
+    if @project.update_attributes(project_params)
+      redirect_to project_path(@project)
+    else
+      redirect_to edit_project_path(@project)
+    end
+
+  end
+
   private
   def project_params
-    params.require(:project).permit(:title, :description, :goal, :end_date)
+    params.require(:project).permit(:title, :description, :goal, :end_date,
+    rewards_attributes: [:title, :description, :min_amount, :max_amount, :_destroy])
   end
+  
 end
