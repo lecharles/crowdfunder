@@ -20,6 +20,13 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_rewards = @project.rewards
+    @project_comments = @project.comments
+    @sum_of_funds = @project.funds.sum(:amount)
+    if current_user
+      @fund = @project.funds.build #need a form for fund
+      @comment = @project.comments.build #need a form for comment
+    end
   end
 
   def edit

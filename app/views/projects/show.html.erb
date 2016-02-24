@@ -11,6 +11,9 @@
 <div class = "info">
   <strong>End Date:</strong> <%=@project.end_date%>
 </div>
+<div class = "info">
+  <strong>Amount funded:</strong> <%= @sum_of_funds %>
+</div>
 
 <div id = "navigation">
   <%= link_to "Back", projects_path %> | <%= link_to "Edit Project", edit_project_path(@project) %>
