@@ -162,7 +162,6 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-<<<<<<< HEAD
   cancancan (~> 1.10)
   cocoon
   jbuilder (~> 2.0)
