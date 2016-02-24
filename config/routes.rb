@@ -4,13 +4,13 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :projects
-
-  resources :funds
+  resources :projects do
+    resources :funds
+    resources :comments
+  end
 
   resources :rewards
 
-  resources :comments
 
   resources :user_sessions
   get 'login' => 'user_sessions#new', :as => :login

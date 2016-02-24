@@ -1,19 +1,33 @@
 <h1>View Project</h1>
 <div class = "info">
-  <strong>Title:</strong> <%=@project.title%>
+  <strong>Title:</strong> <%= @project.title%>
 </div>
 <div class = "info">
-  <strong>Description:</strong> <%=@project.description%>
+  <strong>Description:</strong> <%= @project.description%>
 </div>
 <div class = "info">
-  <strong>Goal:</strong> <%=@project.goal%>
+  <strong>Goal:</strong> <%= @project.goal%>
 </div>
 <div class = "info">
-  <strong>End Date:</strong> <%=@project.end_date%>
+  <strong>End Date:</strong> <%= @project.end_date%>
 </div>
 <div class = "info">
   <strong>Amount funded:</strong> <%= @sum_of_funds %>
 </div>
+
+
+<% if current_user %>
+  <%= form_for([@project, @fund]) do |f| %>
+    <div class="field">
+      <%= f.label :amount %>
+      <%= f.number_field :amount %>
+    </div>
+    <div class="submit">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
+
 
 <div id = "navigation">
   <%= link_to "Back", projects_path %> | <%= link_to "Edit Project", edit_project_path(@project) %>
