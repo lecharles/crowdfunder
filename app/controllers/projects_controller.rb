@@ -21,11 +21,11 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_rewards = @project.rewards
-    @project_comments = @project.comments
+    @project_comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
     @sum_of_funds = @project.funds.sum(:amount)
     if current_user
-      @fund = @project.funds.build #need a form for fund
-      @comment = @project.comments.build #need a form for comment
+      @fund = @project.funds.build
+      @comment = @project.comments.build
     end
   end
 

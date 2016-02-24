@@ -15,8 +15,23 @@
   <strong>Amount funded:</strong> <%= @sum_of_funds %>
 </div>
 
+<% if @project_comments %>
+  <h2>Comments</h2>
+  <% @project_comments.each do |comment| %>
+    <div class = "info">
+      <strong><%= comment.title %></strong>
+      <br>
+      <%= comment.body %>
+      <br>
+      <em> by <%= comment.user.email %></em>
+      <br>
+      Added on: <%= comment.created_at %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if current_user %>
+<h2>Fund</h2>
   <%= form_for([@project, @fund]) do |f| %>
     <div class="field">
       <%= f.label :amount %>
@@ -26,6 +41,22 @@
       <%= f.submit %>
     </div>
   <% end %>
+
+<h2>Make Comment</h2>
+  <%= form_for([@project, @comment]) do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <div class="submit">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
 <% end %>
 
 
