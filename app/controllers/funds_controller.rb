@@ -4,6 +4,12 @@ class FundsController < ApplicationController
     @project = Project.find(params[:project_id])
     @fund = @project.funds.build(fund_params)
     @fund.user = current_user
+    @project_rewards = @project.rewards
+    @project_rewards.each do |reward|
+      if (@fund.amount >= reward.min_amount) && (@fund.amount <= reward.max_amount)
+        @fund.reward = reward
+      end
+    end
 
     if @fund.save
       redirect_to project_path(@project), notice: "Thank you for funding this project!"
