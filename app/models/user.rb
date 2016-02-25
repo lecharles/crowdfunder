@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :comments
   has_many :rewards, through: :funds
+  has_many :backed_projects, through: :funds, source: "project"
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
   validates :password, confirmation: true, if: -> { new_record? || changes["password"] }

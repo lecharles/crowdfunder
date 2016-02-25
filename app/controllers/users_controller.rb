@@ -39,7 +39,9 @@ class UsersController < ApplicationController
 
     end
 
-    
+    @backed_projects = current_user.backed_projects
+
+
   end
 
   private

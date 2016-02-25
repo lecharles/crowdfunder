@@ -24,3 +24,10 @@
     <%= link_to "Edit Project", edit_project_path(project) %>
   <% end %>
 <% end %>
+
+<h1>Backed Projects</h1>
+<% @backed_projects.each do |backed_project| %>
+  <div class = "info">
+    <%= backed_project.title %>
+  </div>
+<% end %>
