@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
    respond_to do |format|
      if @user.save
+       auto_login(@user)
        format.html { redirect_to projects_path, notice: 'User was successfully created.' }
        format.json { render :show, status: :created, location: @user }
      else
@@ -24,7 +25,22 @@ class UsersController < ApplicationController
        format.json { render json: @user.errors, status: :unprocessable_entity }
      end
    end
- end
+  end
+
+  def show
+    @user_id = current_user.id
+    @user_projects = Project.where(user_id: @user_id)
+    @funds_for_projects = {}
+    @rewards_for_projects = {}
+    @amount_to_go = {}
+    @user_projects.each do |project|
+      @funds_for_projects[project] = project.funds.sum(:amount)
+      @amount_to_go[project] = project.goal - @funds_for_projects[project]
+      # @rewards_for_projects[project] = project.
+    end
+
+    @user_funded = Fund.where(id: @user_id)
+  end
 
   private
   def user_params

@@ -14,6 +14,24 @@
 <div class = "info">
   <strong>Amount funded:</strong> <%= @sum_of_funds %>
 </div>
+<div class = "info">
+  <strong>Amount needed:</strong> <%= @amount_needed %>
+</div>
+
+<% if @project_rewards %>
+  <h2>Rewards</h2>
+  <% @project_rewards.each do |reward| %>
+    <div class = "info">
+      <strong>Title:</strong> <%= reward.title %>
+    </div>
+    <div class = "info">
+      <strong>Description:</strong> <%= reward.description %>
+    </div>
+    <div class = "info">
+      <strong>Minimum Amount:</strong> <%= reward.min_amount %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if @project_comments %>
   <h2>Comments</h2>

@@ -1,0 +1,24 @@
+<% if @user_projects.length > 0 %>
+  <h1>Your Own Projects</h1>
+
+  <% @user_projects.each do | project | %>
+    <div class = "info">
+      <strong>Title:</strong> <%= project.title %>
+    </div>
+    <div class = "info">
+      <strong>Description:</strong> <%= project.description %>
+    </div>
+    <div class = "info">
+      <strong>Goal:</strong> <%= project.goal %>
+    </div>
+    <div class = "info">
+      <strong>End Date:</strong> <%= project.end_date %>
+    </div>
+    <div class = "info">
+      <strong>Amount Funded:</strong> <%= @funds_for_projects[project] %>
+    </div>
+    <div class = "info">
+      <strong>Amount Needed:</strong> <%= @amount_to_go[project] %>
+    </div>
+  <% end %>
+<% end %>

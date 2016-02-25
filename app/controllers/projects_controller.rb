@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.user = current_user
 
     if @project.save
       redirect_to projects_url
@@ -23,6 +24,7 @@ class ProjectsController < ApplicationController
     @project_rewards = @project.rewards
     @project_comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
     @sum_of_funds = @project.funds.sum(:amount)
+    @amount_needed = @project.goal - @sum_of_funds
     if current_user
       @fund = @project.funds.build
       @comment = @project.comments.build

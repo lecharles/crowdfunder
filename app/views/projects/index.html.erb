@@ -2,8 +2,9 @@
 
 <div id = "projects">
   <% @projects.each do | project | %>
-    <a href = '/projects/<%=project.id%>'><%=project.title%></a>
-
+    <div id = "project">
+      <a href = '/projects/<%=project.id%>'><%=project.title%></a>
+    </div>
   <% end %>
 </div>
 <div id = "navigation">
