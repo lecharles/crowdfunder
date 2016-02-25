@@ -20,5 +20,7 @@
     <div class = "info">
       <strong>Amount Needed:</strong> <%= @amount_to_go[project] %>
     </div>
+
+    <%= link_to "Edit Project", edit_project_path(project) %>
   <% end %>
 <% end %>
