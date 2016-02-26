@@ -5,19 +5,46 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+
 </head>
 <body>
   <div id="nav">
+
+    <div class="logo-wrapper hide-for-small-only">
+      <div class="logo">
+        <a href='http://localhost:3000/' target='index'><img src='http://s11.postimg.org/tmna0gw8v/cf_logo.png' border='0' alt="cf logo" /></a>
+        <p class="menu-text">Fund Your Cause</p>
+      </div>
+    </div>
+
     <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-    <%= link_to "User Profile", user_path(current_user) %>
-    <%= link_to "Logout", :logout, method: :post %>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <!-- Insert Logo img src here -->
+          <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
+          <li><%= link_to "User Profile", user_path(current_user) %></li>
+          <li><%= link_to "Logout", :logout, method: :post %></li>
+        </ul>
+      </div>
+
+      <div class="top-bar">
+        <div class="top-bar-right">
+        Logged in as <%= current_user.email %>
+        </div>
+      </div>
+
     <% else %>
-    <%= link_to "Register", new_user_path %> |
-    <%= link_to "Login", :login %>
+      <div class="top-bar">
+        <div class="top-bar-right">
+          <ul class="menu">
+      <%= link_to "Login", :login %> |
+      <%= link_to "Register", new_user_path %>
     <% end %>
-  </div>
+          </ul>
+        </div>
+      </div>
   <div>
     <p id="notice"><%= flash[:notice] %></p>
     <p id="alert"><%= flash[:alert] %></p>
