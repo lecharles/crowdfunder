@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_owner = @project.user
     @project_rewards = @project.rewards
     @project_comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
     @sum_of_funds = @project.funds.sum(:amount)

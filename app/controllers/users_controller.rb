@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     @user_id = current_user.id
     @user_projects = Project.where(user_id: @user_id)
     @funds_for_projects = {}
-    @rewards_for_projects = {}
     @amount_to_go = {}
     @user_projects.each do |project|
       @funds_for_projects[project] = project.funds.sum(:amount)
