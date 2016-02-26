@@ -5,7 +5,8 @@ class FundsController < ApplicationController
     @fund = @project.funds.build(fund_params)
     @fund.user = current_user
     @project_rewards = @project.rewards
-    @project_rewards.each do |reward|
+    @fund.reward = @project_rewards[@project_rewards.length-1]
+    @project_rewards[0...@project_rewards.length-1].each do |reward|
       if (@fund.amount >= reward.min_amount) && (@fund.amount <= reward.max_amount)
         @fund.reward = reward
       end

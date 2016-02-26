@@ -9,5 +9,4 @@ class Project < ActiveRecord::Base
   validates :description, :title, presence: true
   validates :goal, numericality: {only_integer: true}
 
-
 end

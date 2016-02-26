@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_id = current_user.id
+    @user_id = params[:id]
+    @user = User.find(params[:id])
     @user_projects = Project.where(user_id: @user_id)
     @funds_for_projects = {}
     @amount_to_go = {}
@@ -38,7 +39,9 @@ class UsersController < ApplicationController
 
     end
 
-    @backed_projects = current_user.backed_projects
+    @backed_projects = @user.backed_projects.uniq
+
+    @earned_rewards = @user.rewards
 
 
   end

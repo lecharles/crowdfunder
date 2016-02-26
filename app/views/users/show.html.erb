@@ -1,5 +1,7 @@
+<h1><%= @user.email %>
+
 <% if @user_projects.length > 0 %>
-  <h1>Your Own Projects</h1>
+  <h2>Owned Projects</h2>
 
   <% @user_projects.each do | project | %>
     <div class = "info">
@@ -20,16 +22,43 @@
     <div class = "info">
       <strong>Amount Needed:</strong> <%= @amount_to_go[project] %>
     </div>
-
-    <%= link_to "Edit Project", edit_project_path(project) %>
+    <% if current_user == project.user %>
+      <%= link_to "Edit Project", edit_project_path(project) %>
+    <% end %>
   <% end %>
+
+<% else %>
+
+  <h3>User has no owned projects</h3>
+
 <% end %>
 
+
+
 <% if @backed_projects.length > 0 %>
-  <h1>Backed Projects</h1>
+  <h2>Backed Projects</h2>
   <% @backed_projects.each do |backed_project| %>
     <div class = "info">
-      <%= backed_project.title %>
+      <%= link_to backed_project.title, project_path(backed_project) %>
     </div>
   <% end %>
+
+<% else %>
+
+  <h3>User has no backed projects</h3>
+
+<% end %>
+
+<% if @earned_rewards.length > 0 %>
+  <h2>Earned Rewards</h2>
+  <% @earned_rewards.each do |earned_reward| %>
+    <div class = "info">
+      <strong>Title:</strong> <%= earned_reward.title %>, for Project: <%= earned_reward.project.title %>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <h3>User hasn't earned any rewards.</h3>
+
 <% end %>

@@ -36,6 +36,11 @@
     <div class = "info">
       <strong>Maximum Amount:</strong> <%= reward.max_amount %>
     </div>
+    <div class = "info">
+      <strong>Times Reward Earned:</strong> <%= @times_earned[reward] %>
+    </div>
+
+    <br>
   <% end %>
 <% end %>
 
@@ -53,36 +58,38 @@
     </div>
   <% end %>
 <% end %>
-
 <% if current_user %>
-<h2>Fund</h2>
-  <%= form_for([@project, @fund]) do |f| %>
-    <div class="field">
-      <%= f.label :amount %>
-      <%= f.number_field :amount %>
-    </div>
-    <div class="submit">
-      <%= f.submit %>
+
+  <h2>Make Comment</h2>
+    <%= form_for([@project, @comment]) do |f| %>
+      <div class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :body %>
+        <%= f.text_area :body %>
+      </div>
+      <div class="submit">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
+
+
+  <h2>Fund</h2>
+    <%= form_for([@project, @fund]) do |f| %>
+      <div class="field">
+        <%= f.label :amount %>
+        <%= f.number_field :amount %>
+      </div>
+      <div class="submit">
+        <%= f.submit %>
     </div>
   <% end %>
 
-<h2>Make Comment</h2>
-  <%= form_for([@project, @comment]) do |f| %>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div class="field">
-      <%= f.label :body %>
-      <%= f.text_area :body %>
-    </div>
-    <div class="submit">
-      <%= f.submit %>
-    </div>
-  <% end %>
 
 <% end %>
-
 
 <div id = "navigation">
   <%= link_to "Back", projects_path %> | <%= link_to "Edit Project", edit_project_path(@project) %>

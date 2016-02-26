@@ -11,6 +11,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.user = current_user
+    new_reward = Reward.new(title: "Gratitude", description: "Thanks for the donation",
+      min_amount: 0, max_amount: @project.goal)
+    @project.rewards.push(new_reward)
 
     if @project.save
       redirect_to projects_url
@@ -23,6 +26,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project_owner = @project.user
     @project_rewards = @project.rewards
+    @times_earned = {}
+    @project_rewards.each do |reward|
+      @times_earned[reward] = Fund.where(reward_id: reward.id).count
+
+    end
     @project_comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
     @sum_of_funds = @project.funds.sum(:amount)
     @amount_needed = @project.goal - @sum_of_funds
