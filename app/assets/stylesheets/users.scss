@@ -25,6 +25,13 @@ $logo-margin: - ($logo-width / 2);
       padding-top: 8%;
   }
 
+  .container {
+    border: solid 2px;
+    border-color: tomato;
+    height: auto;
+    margin: 0 auto;
+    align: center;
+  }
 
   .logo-wrapper {
     position: relative;
