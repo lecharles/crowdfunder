@@ -1,7 +1,7 @@
 <h1>All Users List</h1>
 
-<% @users.each do |puppy| %>
+<% @users.each do |user| %>
   <div class='user'>
-    <%= link_to puppy.email, puppy %>
+    <%= link_to user.email, user %>
   </div>
 <% end %>
