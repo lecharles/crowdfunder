@@ -5,7 +5,12 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to project_path(@project), notice: "Thank you for commenting this project!"
+      respond_to do |format|
+        format.html do
+          redirect_to project_path(@project), notice: "Thank you for commenting this project!"
+        end
+        format.js
+      end
     else
       redirect_to project_path(@project), notice: "Something went wrong, comment not saved"
     end

@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
       @times_earned[reward] = Fund.where(reward_id: reward.id).count
 
     end
-    @project_comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
+    @comments = @project.comments.sort_by{|comment| comment.created_at}.reverse
     @sum_of_funds = @project.funds.sum(:amount)
     @amount_needed = @project.goal - @sum_of_funds
     if current_user

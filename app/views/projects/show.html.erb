@@ -44,19 +44,11 @@
   <% end %>
 <% end %>
 
-<% if @project_comments %>
+<% if @comments %>
   <h2>Comments</h2>
-  <% @project_comments.each do |comment| %>
-    <div class = "info">
-      <strong><%= comment.title %></strong>
-      <br>
-      <%= comment.body %>
-      <br>
-      <em> by <%= comment.user.email %></em>
-      <br>
-      Added on: <%= comment.created_at %>
-    </div>
-  <% end %>
+  <div id="comments-container">
+    <%= render @comments %>
+  </div>
 <% end %>
 <% if current_user %>
 
